@@ -1,0 +1,82 @@
+button:hover {
+    opacity: 0.7;
+}
+
+.dropdown-container {
+    display: flex;
+    margin-top: 15px; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 5px 0; 
+    border-radius: 5px;
+}
+
+.historyLogo {
+    width: 30px;
+    height: 30px;
+}
+
+.historyLogo:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px; 
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    margin: 0; 
+    background-color: #fff; 
+}
+
+.history-item:last-child {
+    border-bottom: none; 
+}
+
+.history-item p {
+    margin: 0;
+}
+
+.delete-icon {
+    width: 20px; 
+    height: 20px;
+}
+
+.delete-icon:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.dropdown-content p:hover {
+    cursor: pointer;
+    opacity: 0.7;    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#historyHeader {
+    display: none;
+}
+
+#dropdownContent p.history-kosong {
+    margin: 0;
+    padding: 10px;
+    color: grey;
+    text-align: center;
+}
