@@ -20,6 +20,14 @@ document.getElementById("name").addEventListener("keydown", (event) => {
   }
 });
 
+const displayLoading = () => {
+  document.querySelector(".loading-container").style.display = "block";
+};
+
+const hideLoading = () => {
+  document.querySelector(".loading-container").style.display = "none";
+};
+
 const onNameClick = (name) => {
   timer = 0;
   for (let i = 0; i < history.length; i++) {
@@ -29,7 +37,7 @@ const onNameClick = (name) => {
   }
 };
 
-const displayHistory = (name) => {
+const displayDropdownContent = (name) => {
   const dropdownHistory = document.getElementById("dropdownContent");
 
   const historyListContainer = document.createElement("div");
@@ -70,7 +78,7 @@ const updateHistory = (name, khodam, img) => {
       khodam: khodam,
       img: img,
     });
-    updateHistoryDisplay();
+    updateDropdownDisplay();
   }
 };
 
@@ -83,14 +91,17 @@ const handleForm = (event) => {
     alert("Masukan input terlebih dahulu!");
     return;
   } else {
+    displayLoading();
     updateHistory(nameInput, khodam.khodam, khodam.img);
-    setInterval(displayResult(nameInput, khodam.khodam, khodam.img), 5000);
+    displayResult(nameInput, khodam.khodam, khodam.img);
   }
   console.log(history);
 };
 
 const displayResult = (name, khodam, img) => {
+  displayLoading();
   setTimeout(() => {
+    hideLoading();
     document.getElementById(
       "displayName"
     ).textContent = `Nama yang dimasukan: ${name}`;
@@ -104,7 +115,7 @@ const displayResult = (name, khodam, img) => {
 const handleDelete = (name) => {
   const indexToDelete = history.findIndex((item) => item.name === name);
   history.splice(indexToDelete, 1);
-  updateHistoryDisplay();
+  updateDropdownDisplay();
   if (history.length > 0) {
     const previousItem = history[Math.max(0, indexToDelete - 1)]; // Get the item before the deleted one or the first item if deleting the first
     displayResult(previousItem.name, previousItem.khodam, previousItem.img);
@@ -113,7 +124,7 @@ const handleDelete = (name) => {
   }
 };
 
-const updateHistoryDisplay = () => {
+const updateDropdownDisplay = () => {
   const dropdownHistory = document.getElementById("dropdownContent");
   dropdownHistory.innerHTML = "";
   if (history.length === 0) {
@@ -122,7 +133,7 @@ const updateHistoryDisplay = () => {
     emptyMessage.classList.add("history-kosong");
     dropdownHistory.appendChild(emptyMessage);
   } else {
-    history.forEach((item) => displayHistory(item.name));
+    history.forEach((item) => displayDropdownContent(item.name));
   }
 };
 
@@ -132,4 +143,4 @@ const clearDisplay = () => {
   document.getElementById("imgKhodam").src = "";
 };
 
-updateHistoryDisplay();
+updateDropdownDisplay();
